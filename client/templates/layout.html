@@ -1,0 +1,16 @@
+<template name="layout">
+    <div class="grey darken-4" style="min-height: 100vh">
+        <header class="navbar navbar-default" role="navigation">
+            <nav class="grey darken-3">
+                <div class="nav-wrapper">
+                    <a href="/" class="brand-logo center"><img src="/img/logo.png" style="height: 50px; margin-top: 7px"/></a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div id="main">
+                {{> yield}}
+            </div>
+        </main>
+    </div>
+</template>
