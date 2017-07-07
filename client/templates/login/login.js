@@ -8,5 +8,9 @@ Template.login.events({
                 Materialize.toast('Une erreur s\'est produite : ' + err, 4000);
             }
         });
+
+        Accounts.createUser({}, function(error){
+            Materialize.toast('Une erreur s\'est produite : ' + error, 4000);
+        });
     }
 });
