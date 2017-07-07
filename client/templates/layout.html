@@ -3,7 +3,25 @@
         <header class="navbar navbar-default" role="navigation">
             <nav class="grey darken-3">
                 <div class="nav-wrapper">
-                    <a href="/" class="brand-logo center"><img src="/img/logo.png" style="height: 50px; margin-top: 7px"/></a>
+                    {{#if currentUser}}
+                        <ul id="nav-mobile" class="left hide-on-med-and-down">
+                            {{#if currentUser.permission}}
+                                <li><a href="/admin/users">Administration</a></li>
+                            {{/if}}
+                        </ul>
+                    {{/if}}
+                    <a href="/" class="brand-logo center"><img src="/img/logo.png"
+                                                               style="height: 50px; margin-top: 7px"/></a>
+                    {{#if currentUser}}
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a><img
+                                    src="//graph.facebook.com/{{ currentUser.services.facebook.id }}/picture?type=large"
+                                    style="height: 32px; border-radius: 100%; margin-top: 15px; margin-right: -20px"></a>
+                            </li>
+                            <li><a style="font-weight: 600;">{{currentUser.username}}</a></li>
+                            <li><a href="/logout"><i class="material-icons">close</i></a></li>
+                        </ul>
+                    {{/if}}
                 </div>
             </nav>
         </header>
