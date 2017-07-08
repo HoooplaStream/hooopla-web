@@ -25,10 +25,12 @@
                 </div>
             </nav>
         </header>
-        <main>
-            <div id="main">
-                {{> yield}}
-            </div>
-        </main>
+        {{#transitioner}}
+            <main>
+                <div id="main">
+                    {{> yield}}
+                </div>
+            </main>
+        {{/transitioner}}
     </div>
 </template>
