@@ -1,12 +1,7 @@
 Template.adminTorrents.helpers({
     'torrents': function () {
-        var Transmission = require('transmission');
-        var transmission = new Transmission({
-            host: 'torrent.cseries.tk',
-            ssl: true
+        Meteor.http.call("GET", 'https://apit.cseries.tk/index.php?token=f4sd56qf4987jn9g8h7j98798k7y949hg9df7s&request=getAll', function (error, result) {
+            return result;
         });
-        var torrents = transmission.all();
-        console.log(torrents);
-        return torrents;
     }
 });
