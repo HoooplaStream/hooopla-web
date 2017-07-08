@@ -1,11 +1,12 @@
-const Transmission = require('transmission-client').Transmission;
-
 Template.adminTorrents.helpers({
     'torrents': function () {
-        let Client = new Transmission({
-            host: '178.33.80.111'
+        var Transmission = require('transmission');
+        var transmission = new Transmission({
+            host: 'torrent.cseries.tk',
+            ssl: true
         });
-
-        return Client.all();
+        var torrents = transmission.all();
+        console.log(torrents);
+        return torrents;
     }
 });
