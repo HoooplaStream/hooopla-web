@@ -1,6 +1,6 @@
 Template.adminSeries.helpers({
     'series': function () {
-        return series.find({'enable': 1});
+        return series.find({'enable': 1}).fetch();
     }
 });
 

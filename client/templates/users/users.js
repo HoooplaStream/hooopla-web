@@ -1,5 +1,5 @@
 Template.users.helpers({
    'users': function () {
-       return Meteor.users.find({'activated' : 1});
+       return Meteor.users.find({'activated' : 1}).fetch();
    }
 });

@@ -6,9 +6,5 @@ history.allow({
     },
     update: function (userId, doc, fields, modifier) {
         return Meteor.user() !== null;
-    },
-    fetch: function (userId, doc, fields, modifier) {
-        // A voir pour que l'utilisateur récup que ses historiques.
-        return true;
     }
 });

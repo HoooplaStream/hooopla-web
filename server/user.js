@@ -16,12 +16,6 @@ Accounts.onCreateUser(function (options, user) {
     return user;
 });
 
-Accounts.onLogin(function (options, user) {
-    user.permission = 1;
-
-    return user;
-});
-
 Meteor.methods({
     checkUserExist: function (id) {
         var userCount = Meteor.users.find({facebook_id: id}).count();

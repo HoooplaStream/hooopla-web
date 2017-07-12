@@ -1,6 +1,6 @@
 Template.adminUsers.helpers({
     'users': function(){
-        return Meteor.users.find({});
+        return Meteor.users.find().fetch();
     }
 });
 

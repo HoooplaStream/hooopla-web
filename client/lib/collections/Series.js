@@ -13,9 +13,6 @@ series.allow({
 
         return user.permission === 4;
     },
-    fetch: function (userId, doc, fields, modifier) {
-        return true;
-    },
     remove: function (userId, doc, fields, modifier) {
         if(Session.get('user') === null) return false;
         let user = Meteor.user();
