@@ -21,7 +21,7 @@ Template.adminUsers.events({
 if(Meteor.isServer){
     Meteor.users.allow({
         update: function (userId, doc, fields, modifier) {
-            if(Meteor.user() !== null) return false;
+            if(!Meteor.user()) return false;
             if(Meteor.user().permission !== 4) return false;
             return true;
         },

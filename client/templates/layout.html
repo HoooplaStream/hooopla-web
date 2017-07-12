@@ -5,6 +5,8 @@
                 <div class="nav-wrapper">
                     {{#if currentUser}}
                         <ul id="nav-mobile" class="left hide-on-med-and-down">
+                            <li><a href="/">Séries</a></li>
+                            <li><a href="/users">Membres</a></li>
                             {{#if currentUser.permission}}
                                 <li><a href="/admin/users">Administration</a></li>
                             {{/if}}
