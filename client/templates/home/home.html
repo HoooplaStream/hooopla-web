@@ -1,7 +1,23 @@
 <template name="home">
     <div class="container">
         <div class="row">
-
+            {{#each serie in series}}
+                <div class="col l2 s4">
+                    <a href="/serie/{{ serie.id }}" target="_blank">
+                        <div class="card grey darken-3 waves-effect">
+                            <div class="card-image">
+                                <img class="activator" src="{{ serie.cover }}">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator white-text truncate center"
+                                      style="font-size: 14px">{{ serie.name }}</span>
+                                <p class="center grey-text text-lighten-2 center"
+                                   style="font-size: 10px; padding-top: 0; margin-top: -15px">{{ serie.rating }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {{/each}}
         </div>
     </div>
 </template>

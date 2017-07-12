@@ -1,3 +1,13 @@
-Template.home.rendered = function() {
-    if(currentUser == null) Router.go('login');
+Template.home.rendered = function () {
+
 };
+
+Template.home.helpers({
+    'series': function () {
+        return series.find({'enable': true});
+    }
+});
+
+Template.home.events({
+
+});
