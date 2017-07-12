@@ -40,7 +40,7 @@ Accounts.onCreateUser(function (options, user) {
 // Online
 
 Meteor.publish("userStatus", function() {
-    return Meteor.users.find({ "status.online": true }, { fields: { ... } });
+    return Meteor.users.find({ "status.online": true });
 });
 
 // Méthodes

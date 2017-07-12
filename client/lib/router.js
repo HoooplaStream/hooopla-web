@@ -6,7 +6,7 @@ Router.configure({
 // Site
 Router.route('/', {name: 'home'});
 Router.route('/login', {name: 'login'});
-Router.route('/users', {name: 'users'});
+Router.route('/users', {name: 'usersOnline'});
 Router.route('/view/:id', {name: 'view'});
 
 // User
