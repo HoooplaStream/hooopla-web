@@ -1,8 +1,5 @@
 Template.adminUsers.helpers({
     'users': function(){
-        Meteor.users.find().forEach(function(oneUser) {
-            console.log(oneUser);
-        });
         return Meteor.users.find({});
     }
 });
@@ -23,12 +20,12 @@ Template.adminUsers.events({
 
 if(Meteor.isServer){
     Meteor.users.allow({
-        update: function () {
+        update: function (userId, doc, fields, modifier) {
             if(Meteor.user() !== null) return false;
             if(Meteor.user().permission !== 4) return false;
             return true;
         },
-        remove: function () {
+        remove: function (userId, doc, fields, modifier) {
             if(Meteor.user() !== null) return false;
             if(Meteor.user().permission !== 4) return false;
             return true;
