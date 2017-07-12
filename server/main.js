@@ -11,16 +11,6 @@ Meteor.startup(() => {
         secret: 'afe68df1a55ebc24c479234b1104c757'
     });
 
-    Accounts.onCreateUser(function (options, user) {
-        if (!user.services.facebook) {
-            return user;
-        }
-        user.id = user.services.facebook.id;
-        user.username = user.services.facebook.name;
-        user.email = user.services.facebook.email;
-        user.activated = false;
-        user.permission = 0;
 
-        return user;
-    });
+
 });
