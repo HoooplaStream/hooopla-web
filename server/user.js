@@ -39,8 +39,16 @@ Accounts.onCreateUser(function (options, user) {
 
 // Online
 
-Meteor.publish("userStatus", function() {
-    return Meteor.users.find({ "status.online": true });
+Meteor.publish("userStatus", function () {
+    return Meteor.users.find({"status.online": true});
+});
+
+Meteor.publish('users', function () {
+    return Meteor.users.find();
+});
+
+Meteor.publish('usersActivated', function () {
+    return Meteor.users.find({'activated': true});
 });
 
 // Méthodes

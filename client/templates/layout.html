@@ -29,7 +29,9 @@
         </header>
         <main>
             <div id="main">
-                {{> yield}}
+                {{#transitioner}}
+                    {{> yield}}
+                {{/transitioner}}
             </div>
         </main>
     </div>
