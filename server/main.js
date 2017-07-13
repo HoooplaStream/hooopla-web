@@ -27,5 +27,6 @@ Meteor.startup(() => {
         password: '3QRKpaRmkWD8hz1Fb',
         vhost: '/'
     };
-
+    amqp = require('amqp');
+    var connection = amqp.createConnection(rabbitOptions);
 });
