@@ -12,7 +12,7 @@ Template.adminUsers.events({
     'click #disableAccount': function (e) {
         e.preventDefault();
         let id = e.target.getAttribute("data-id");
-        Meteor.call('desactivateUser', id, (error) => {
+        Meteor.call('user.desactivate', id, (error) => {
             if (error) Materialize.toast(error.message);
             else Materialize.toast('L\'utilisateur a été désactivé !');
         });
@@ -20,7 +20,7 @@ Template.adminUsers.events({
     'click #enableAccount': function (e) {
         e.preventDefault();
         let id = e.target.getAttribute("data-id");
-        Meteor.call('activateUser', id, (error, result) => {
+        Meteor.call('user.activate', id, (error) => {
             if (error) Materialize.toast(error.message);
             else Materialize.toast('L\'utilisateur a été activé !');
         });

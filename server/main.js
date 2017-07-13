@@ -19,5 +19,13 @@ Meteor.startup(() => {
         apiKey: '1f5a707eebaff5c4a425834d7b2c144f'
     }},{
         upsert: true
-    })
+    });
+
+    var rabbitOptions = {
+        host: 'localhost',
+        login: 'cseries',
+        password: '3QRKpaRmkWD8hz1Fb',
+        vhost: '/'
+    };
+
 });

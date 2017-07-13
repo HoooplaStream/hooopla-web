@@ -22,11 +22,33 @@ Meteor.methods({
     'countUser': function() {
         return Meteor.users.count();
     },
-    'activateUser': function(id) {
-        Meteor.users.update(id, {$set: {"profile.enabled": true}});
+    'user.activate': function(id) {
+        if(!Meteor.userId()) throw new Meteor.Error('not-logged', 'Vous n\'êtes pas connecté !');
+
+        var permission = Meteor.users.findOne({_id:Meteor.userId()}).profile.permission;
+        if(permission < 4) throw new Meteor.Error('not-logged', 'Vous n\'avez pas les permissions !');
+
+        Meteor.users.update(id, { $set: { 'profile.enabled': true } }, function(error, affectedDocs) {
+            if (error) {
+                throw new Meteor.Error('not-logged', error.message);
+            } else {
+                return "Update Successful";
+            }
+        });
     },
-    'desactivateUser': function(id) {
-        Meteor.users.update(id, {$set: {"profile.enabled": false}});
+    'user.desactivate': function(id) {
+        if(!Meteor.userId()) throw new Meteor.Error('not-logged', 'Vous n\'êtes pas connecté !');
+
+        var permission = Meteor.users.findOne({_id:Meteor.userId()}).profile.permission;
+        if(permission < 4) throw new Meteor.Error('not-logged', 'Vous n\'avez pas les permissions !');
+
+        Meteor.users.update(id, { $set: { 'profile.enabled': false } }, function(error, affectedDocs) {
+            if (error) {
+                throw new Meteor.Error('not-logged', error.message);
+            } else {
+                return "Update Successful";
+            }
+        });
     }
 });
 
@@ -44,8 +66,8 @@ Accounts.onCreateUser(function (options, user) {
     user.id = user.services.facebook.id;
     user.username = user.services.facebook.name;
     user.email = user.services.facebook.email;
-    user.activated = false;
-    user.permission = 0;
+    user.profile.enabled = false;
+    user.profile.permission = 0;
 
     return user;
 });

@@ -1,9 +1,9 @@
 <template name="usersOnline">
     <div class="row">
         {{#each user in onlineUser}}
-            <div class="col l4 m6 animated fadeInUp">
+            <div class="col l4 m6 animated fadeInUp" style="padding: 0">
                 <div class="card"
-                     style="width: 100%; background: url('https://images4.alphacoders.com/831/thumb-1920-831904.jpg'); background-size: cover; background-color: rgba(0, 0, 0, 0.5); background-blend-mode: darken">
+                     style="width: 100%; margin: 0; background: url('https://images4.alphacoders.com/831/thumb-1920-831904.jpg'); background-size: cover; background-color: rgba(0, 0, 0, 0.5); background-blend-mode: darken">
                     <div class="card-content">
                         <div class="row" style="margin-bottom: 0">
                             <div class="col hide-on-med-and-down">
@@ -13,6 +13,7 @@
                             <div class="col">
                                 <span class="card-title activator white-text">{{ user.username }}</span>
                                 <p class="grey-text text-lighten-1 truncate">Entrain de regarder Camping 3</p>
+                                <a><i class="material-icons white-text">star</i><i class="material-icons white-text">star</i><i class="material-icons white-text">star</i><i class="material-icons grey-text">star</i><i class="material-icons grey-text">star</i></a><br>
                                 <a class="btn red waves-effect" style="margin-top: 20px">Regarder avec lui</a>
                             </div>
                         </div>
