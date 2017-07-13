@@ -11,4 +11,12 @@ Meteor.startup(() => {
         appId: '1912649022307785',
         secret: 'afe68df1a55ebc24c479234b1104c757'
     });
+
+    ServiceConfiguration.configurations.update({
+        service: 'tmdb'
+    },{$set: {
+        apiKey: '1f5a707eebaff5c4a425834d7b2c144f'
+    }},{
+        upsert: true
+    })
 });
