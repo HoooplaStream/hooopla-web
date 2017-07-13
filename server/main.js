@@ -9,6 +9,7 @@ Meteor.startup(() => {
     ServiceConfiguration.configurations.insert({
         service: "facebook",
         appId: '1912649022307785',
+        loginStyle: "popup",
         secret: 'afe68df1a55ebc24c479234b1104c757'
     });
 

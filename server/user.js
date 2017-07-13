@@ -1,21 +1,34 @@
-// Role
+// User
 
 if (Meteor.isServer) {
-    if (Meteor.roles.find({}).count() === 0) {
-        Meteor.roles.insert({
-            name: "Membre",
-            permissions: ['membre']
-        });
-        Meteor.roles.insert({
-            name: "Ambassadeur",
-            permissions: ['ambassadeur']
-        });
-        Meteor.roles.insert({
-            name: "Administrateur",
-            permissions: ['admin']
-        });
-    }
+    Meteor.publish("userStatus", function () {
+        return Meteor.users.find({"status.online": true});
+    });
+
+    Meteor.publish('users', function () {
+        return Meteor.users.find();
+    });
+
+    Meteor.publish('usersActivated', function () {
+        return Meteor.users.find({'activated': true});
+    });
 }
+
+Meteor.methods({
+    'checkUserExist': function(id) {
+        var userCount = Meteor.users.find({facebook_id: id}).count();
+        return userCount != 0;
+    },
+    'countUser': function() {
+        return Meteor.users.count();
+    },
+    'activateUser': function(id) {
+        Meteor.users.update(id, {$set: {"profile.enabled": true}});
+    },
+    'desactivateUser': function(id) {
+        Meteor.users.update(id, {$set: {"profile.enabled": false}});
+    }
+});
 
 // Compte
 
@@ -37,29 +50,4 @@ Accounts.onCreateUser(function (options, user) {
     return user;
 });
 
-// Online
-
-Meteor.publish("userStatus", function () {
-    return Meteor.users.find({"status.online": true});
-});
-
-Meteor.publish('users', function () {
-    return Meteor.users.find();
-});
-
-Meteor.publish('usersActivated', function () {
-    return Meteor.users.find({'activated': true});
-});
-
-// Méthodes
-
-Meteor.methods({
-    checkUserExist: function (id) {
-        var userCount = Meteor.users.find({facebook_id: id}).count();
-        return userCount != 0;
-    },
-    countUser: function () {
-        return Meteor.users.count();
-    }
-});
 

@@ -7,15 +7,20 @@
                     {{#each user in users}}
                         <div class="col l2 s4">
                             <a href="{{ user.services.facebook.link }}" target="_blank">
-                                <div class="card grey darken-3 waves-effect">
+                                <div class="card grey darken-3" style="width: 100%">
                                     <div class="card-image">
                                         <div style="position: absolute; padding: 10px">
-                                            {{#if user.activated }}
-                                                <a class="btn btn-floating green accent-3 pulse" id="disableAccount"
-                                                   data-id="{{ user._id }}"></a>
+                                            {{#if user.status.online }}
+                                                <a class="btn btn-floating green accent-3 pulse"></a>
                                             {{else}}
-                                                <a class="btn btn-floating red accent-2 pulse" id="enableAccount"
-                                                   data-id="{{ user._id }}"></a>
+                                                <a class="btn btn-floating red accent-2"></a>
+                                            {{/if}}
+                                            {{#if user.profile.activated }}
+                                                <a class="btn btn-floating blue accent-3" id="disableAccount"
+                                                   data-id="{{ user._id }}"><i class="material-icons">lock_open</i></a>
+                                            {{else}}
+                                                <a class="btn btn-floating grey accent-2" id="enableAccount"
+                                                   data-id="{{ user._id }}"><i class="material-icons">lock_outline</i></a>
                                             {{/if}}
                                         </div>
                                         <img class="activator"
@@ -24,7 +29,7 @@
                                     <div class="card-content">
                                     <span class="card-title activator white-text truncate center"
                                           style="font-size: 14px">{{ user.username }}</span>
-                                        <p class="center grey-text text-lighten-2 center"
+                                        <p class="center grey-text text-lighten-2 truncate center"
                                            style="font-size: 10px; padding-top: 0; margin-top: -15px">{{ user.services.facebook.email }}</p>
                                     </div>
                                 </div>
