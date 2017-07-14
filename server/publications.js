@@ -1,18 +1,16 @@
 // User
 
-if (Meteor.isServer) {
-    Meteor.publish("userStatus", function () {
-        return Meteor.users.find({"status.online": true});
-    });
+Meteor.publish("userStatus", function () {
+    return Meteor.users.find({"status.online": true});
+});
 
-    Meteor.publish('users', function () {
-        return Meteor.users.find();
-    });
+Meteor.publish('users', function () {
+    return Meteor.users.find();
+});
 
-    Meteor.publish('usersActivated', function () {
-        return Meteor.users.find({'activated': true});
-    });
-}
+Meteor.publish('usersActivated', function () {
+    return Meteor.users.find({'activated': true});
+});
 
 Meteor.methods({
     'checkUserExist': function(id) {
@@ -52,24 +50,9 @@ Meteor.methods({
     }
 });
 
-// Compte
+// Series
 
-Accounts.config({
-    loginExpirationInDays: 31,
-    sendVerificationEmail: false
+Meteor.publish('seriesGet', function () {
+    Meteor._sleepForMs(500);
+    return series.find({});
 });
-
-Accounts.onCreateUser(function (options, user) {
-    if (!user.services.facebook) {
-        return user;
-    }
-    user.id = user.services.facebook.id;
-    user.username = user.services.facebook.name;
-    user.email = user.services.facebook.email;
-    user.profile.enabled = false;
-    user.profile.permission = 0;
-
-    return user;
-});
-
-

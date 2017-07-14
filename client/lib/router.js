@@ -1,17 +1,23 @@
 Router.configure({
     loadingTemplate: 'loading',
-    layoutTemplate: 'layout'
+    layoutTemplate: 'layout',
+    progressSpinner : false
 });
 
 // Site
 Router.route('/', {
     name: 'homeSeries',
     waitOn: function () {
-        return Meteor.subscribe('series.get');
+        return Meteor.subscribe('seriesGet');
     },
 });
 Router.route('/login', {name: 'login'});
-Router.route('/users', {name: 'usersOnline'});
+Router.route('/users', {
+    name: 'usersOnline',
+    waitOn: function () {
+        return Meteor.subscribe('userStatus');
+    }
+});
 Router.route('/view/:id', {name: 'view'});
 
 // User
@@ -21,7 +27,12 @@ Router.route('/logout', function () {
 
 // Admin
 Router.route('/admin', {name: 'adminDashboard'});
-Router.route('/admin/users', {name: 'adminUsers'});
+Router.route('/admin/users', {
+    name: 'adminUsers',
+    waitOn: function () {
+        return Meteor.subscribe('users');
+    }
+});
 Router.route('/admin/torrents', {name: 'adminTorrents'});
 Router.route('/admin/series', {name: 'adminSeries'});
 

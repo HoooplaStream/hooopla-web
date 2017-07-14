@@ -20,6 +20,4 @@ Meteor.startup(() => {
     }},{
         upsert: true
     });
-
-    process.env.MONGO_URL = "mongodb://cseries:1Uij3BcTcSPLmfzdL@localhost:27017/CSeries";
 });

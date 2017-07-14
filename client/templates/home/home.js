@@ -1,5 +1,5 @@
 Template.homeSeries.onCreated(function bodyOnCreated() {
-    Meteor.subscribe('series.get');
+    Meteor.subscribe('seriesGet');
 });
 
 Template.homeSeries.rendered = function () {

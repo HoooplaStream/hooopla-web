@@ -1,7 +1,7 @@
 <template name="usersOnline">
     <div class="row">
         {{#each user in onlineUser}}
-            <div class="col l4 m6 animated fadeInUp" style="padding: 0 animation-delay: {{ math.mul @index 0.05 }}s;">
+            <div class="col l4 m6 animated fadeInUp" style="padding: 0; animation-delay: {{ math.mul @index 0.05 }}s;">
                 <div class="card"
                      style="width: 100%; margin: 0; background: url('https://images4.alphacoders.com/831/thumb-1920-831904.jpg'); background-size: cover; background-color: rgba(0, 0, 0, 0.5); background-blend-mode: darken">
                     <div class="card-content">
