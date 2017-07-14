@@ -1,11 +1,15 @@
-
 Router.configure({
     loadingTemplate: 'loading',
     layoutTemplate: 'layout'
 });
 
 // Site
-Router.route('/', {name: 'home'});
+Router.route('/', {
+    name: 'homeSeries',
+    waitOn: function () {
+        return Meteor.subscribe('series.get');
+    },
+});
 Router.route('/login', {name: 'login'});
 Router.route('/users', {name: 'usersOnline'});
 Router.route('/view/:id', {name: 'view'});

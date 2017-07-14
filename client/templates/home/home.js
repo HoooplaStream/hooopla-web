@@ -1,17 +1,17 @@
-Template.home.onCreated(function bodyOnCreated() {
+Template.homeSeries.onCreated(function bodyOnCreated() {
     Meteor.subscribe('series.get');
 });
 
-Template.home.rendered = function () {
+Template.homeSeries.rendered = function () {
 
 };
 
-Template.home.helpers({
-    'series': function () {
-        return series.get();
+Template.homeSeries.helpers({
+    'seriesList': function () {
+        return series.find();
     }
 });
 
-Template.home.events({
+Template.homeSeries.events({
 
 });
