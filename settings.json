@@ -1,6 +1,6 @@
 {
   "env": {
     "PORT": 3000,
-    "MONGO_URL": "mongodb://localhost:27017/CSeries"
+    "MONGO_URL": "mongodb://cseries:1Uij3BcTcSPLmfzdL@localhost:27017/CSeries"
   }
 }

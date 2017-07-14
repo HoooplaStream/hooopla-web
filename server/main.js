@@ -21,10 +21,5 @@ Meteor.startup(() => {
         upsert: true
     });
 
-    RabbitMQ.ensureConnection({
-        host: 'localhost',
-        login: 'cseries',
-        password: '3QRKpaRmkWD8hz1Fb',
-        vhost: '/'
-    });
+    process.env.MONGO_URL = "mongodb://cseries:1Uij3BcTcSPLmfzdL@localhost:27017/CSeries";
 });

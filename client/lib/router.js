@@ -16,6 +16,7 @@ Router.route('/logout', function () {
 });
 
 // Admin
+Router.route('/admin', {name: 'adminDashboard'});
 Router.route('/admin/users', {name: 'adminUsers'});
 Router.route('/admin/torrents', {name: 'adminTorrents'});
 Router.route('/admin/series', {name: 'adminSeries'});

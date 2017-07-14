@@ -1,0 +1,29 @@
+<template name="adminDashboard">
+    <div class="container">
+        <div class="row">
+            <div style="margin-top: 50px">
+                <h4 class="white-text">Tableau de bord</h4>
+                <div class="row">
+                    <div class="col l2 animated fadeInUp" style="animation-delay: 0s;">
+                        <a href="/admin/users" onclick="$(this).addClass('animated zoomOut');">
+                            <div class="card-panel grey darken-3 waves-effect" style="width: 100%">
+                                <i class="material-icons center white-text"
+                                   style="width: 100%; font-size: 72px">face</i><br>
+                                <h5 class="white-text center" style="line-height: 0">Utilisateurs</h5>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col l2 animated fadeInUp" style="animation-delay: 0.05s;">
+                        <a href="/admin/series">
+                            <div class="card-panel grey darken-3 waves-effect" style="width: 100%">
+                                <i class="material-icons center white-text"
+                                   style="width: 100%; font-size: 72px">live_tv</i><br>
+                                <h5 class="white-text center" style="line-height: 0">Séries</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
