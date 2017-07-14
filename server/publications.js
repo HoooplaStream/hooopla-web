@@ -1,14 +1,17 @@
 // User
 
 Meteor.publish("userStatus", function () {
+    Meteor._sleepForMs(500);
     return Meteor.users.find({"status.online": true});
 });
 
 Meteor.publish('users', function () {
+    Meteor._sleepForMs(500);
     return Meteor.users.find();
 });
 
 Meteor.publish('usersActivated', function () {
+    Meteor._sleepForMs(500);
     return Meteor.users.find({'activated': true});
 });
 
