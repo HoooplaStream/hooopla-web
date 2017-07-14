@@ -21,12 +21,10 @@ Meteor.startup(() => {
         upsert: true
     });
 
-    var rabbitOptions = {
+    RabbitMQ.ensureConnection({
         host: 'localhost',
         login: 'cseries',
         password: '3QRKpaRmkWD8hz1Fb',
         vhost: '/'
-    };
-    amqp = require('amqp');
-    var connection = amqp.createConnection(rabbitOptions);
+    });
 });
