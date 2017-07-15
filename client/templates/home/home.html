@@ -1,10 +1,9 @@
 <template name="homeSeries">
     <div class="row">
         {{#each serie in seriesList}}
-            <div class="col animated fadeInUp"
-                 style="animation-delay: {{ math.mul @index 0.05 }}s; padding: 0; margin: 0;">
-                <div class="card grey hoverable darken-3 waves-effect" style="margin: 0; border-radius: 0">
-                    <div class="card-image">
+            <div class="col animated fadeInUp" data-id="{{ formatId serie._id }}" style="animation-delay: {{ math.mul @index 0.05 }}s; padding: 0; margin: 0;">
+                <div class="card grey darken-4 z-depth-0 waves-effect" id="serie_redirect" data-id="{{ formatId serie._id }}" style="margin: 0; border-radius: 0">
+                    <div class="card-image" data-id="{{ serie.id }}">
                         <img class="activator" src="https://image.tmdb.org/t/p/w185/{{ serie.cover }}">
                         <span class="card-title" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%);">{{ serie.name }}</span>
                         <span class="card-title center" style="padding: 0 24px;">

@@ -24,3 +24,7 @@ Template.registerHelper('starNote', function (note) {
         out += '<i class="material-icons grey-text" style="font-size: 18px">star</i>';
     return Spacebars.SafeString(out);
 });
+
+Template.registerHelper('formatId', function(data) {
+    return (data && data._str) || data;
+});

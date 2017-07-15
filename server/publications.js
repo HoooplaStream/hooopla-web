@@ -59,3 +59,7 @@ Meteor.publish('seriesGet', function () {
     Meteor._sleepForMs(500);
     return series.find({});
 });
+
+Meteor.publish('seriesGetOne', function (seriesID) {
+    return series.find({ seriesID });
+});

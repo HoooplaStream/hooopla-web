@@ -1,7 +1,7 @@
 Router.configure({
     loadingTemplate: 'loading',
     layoutTemplate: 'layout',
-    progressSpinner : false
+    progressSpinner: false
 });
 
 // Site
@@ -9,9 +9,18 @@ Router.route('/', {
     name: 'homeSeries',
     waitOn: function () {
         return Meteor.subscribe('seriesGet');
-    },
+    }
+});
+Router.route('/serie/:id', {
+    name: 'serie',
+    waitOn: function () {
+        return Meteor.subscribe('seriesGetOne', {seriesID: this.params.id});
+    }
 });
 Router.route('/login', {name: 'login'});
+
+
+// Visionnage
 Router.route('/users', {
     name: 'usersOnline',
     waitOn: function () {
@@ -37,14 +46,14 @@ Router.route('/admin/torrents', {name: 'adminTorrents'});
 Router.route('/admin/series', {name: 'adminSeries'});
 
 // Permission
-Router.onBeforeAction(function() {
+Router.onBeforeAction(function () {
     if (!Meteor.userId()) {
         this.redirect('/login');
     } else {
-        var permission = Meteor.users.findOne({_id:Meteor.userId()}).profile.permission;
-        if(Iron.Location.get().path.includes('admin') && permission < 4){
+        var permission = Meteor.users.findOne({_id: Meteor.userId()}).profile.permission;
+        if (Iron.Location.get().path.includes('admin') && permission < 4) {
             this.redirect('/');
-        }else if(Iron.Location.get().path.includes('login') && Meteor.loggingIn()){
+        } else if (Iron.Location.get().path.includes('login') && Meteor.loggingIn()) {
             this.redirect('/');
         }
     }
