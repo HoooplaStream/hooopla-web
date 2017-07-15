@@ -1,20 +1,27 @@
-Template.serie.onCreated(function bodyOnCreated() {
-    this.autorun(() => {
-        Meteor.subscribe('seriesGetOne', {seriesID: Router.current().params.id}, function (error) {
-            if(error) Materialize.toast('Une erreur s\'est produite !');
-        });
+Template.serie.onCreated(function () {
+    Tracker.autorun(() => {
+        Meteor.subscribe('series.getOne', Router.current().params._id);
     });
+
+    this.autorun(function () {
+        var subscription = Meteor.subscribe('series.getOne', Router.current().params._id);
+
+        if (subscription.ready()) {
+            console.log("Reception de la série " + Router.current().params._id);
+        } else {
+            console.log("> Subscription is not ready yet. \n\n");
+        }
+    });
+
+    this.seriesDB = function() {
+        var idDB = Router.current().params._id;
+        return series.findOne(idDB);
+    }
 });
-
-Template.serie.rendered = function () {
-
-};
 
 Template.serie.helpers({
     'seriesDetail': function () {
-        var id = Router.current().params.id;
-        console.log(series.find({ id }));
-        return series.find({ id });
+        return this.seriesDB;
     }
 });
 

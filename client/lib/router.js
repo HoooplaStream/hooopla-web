@@ -8,17 +8,16 @@ Router.configure({
 Router.route('/', {
     name: 'homeSeries',
     waitOn: function () {
-        return Meteor.subscribe('seriesGet');
+        return Meteor.subscribe('series');
     }
 });
-Router.route('/serie/:id', {
+// Serie view
+Router.route('/serie/:_id', {
     name: 'serie',
     waitOn: function () {
-        return Meteor.subscribe('seriesGetOne', {seriesID: this.params.id});
+        return Meteor.subscribe('series.getOne', this.params._id);
     }
 });
-Router.route('/login', {name: 'login'});
-
 
 // Visionnage
 Router.route('/users', {
@@ -30,6 +29,7 @@ Router.route('/users', {
 Router.route('/view/:id', {name: 'view'});
 
 // User
+Router.route('/login', {name: 'login'});
 Router.route('/logout', function () {
     Meteor.logout();
 });

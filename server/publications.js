@@ -53,13 +53,13 @@ Meteor.methods({
     }
 });
 
-// Series
+// Serie
 
-Meteor.publish('seriesGet', function () {
-    Meteor._sleepForMs(500);
+Meteor.publish('series', function () {
     return series.find({});
 });
 
-Meteor.publish('seriesGetOne', function (seriesID) {
-    return series.find({ seriesID });
+Meteor.publish('series.getOne', function (id) {
+    return series.findOne({'_id': id});
 });
+
