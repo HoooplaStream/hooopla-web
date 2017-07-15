@@ -56,10 +56,10 @@ Meteor.methods({
 // Serie
 
 Meteor.publish('series', function () {
-    return series.find({});
+    return series.find();
 });
 
-Meteor.publish('series.getOne', function (id) {
-    return series.findOne({'_id': id});
+Meteor.publish('seriesOne', function (id) {
+    return series.find(new Mongo.ObjectID(id));
 });
 

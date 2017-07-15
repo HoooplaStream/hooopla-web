@@ -11,12 +11,18 @@ Router.route('/', {
         return Meteor.subscribe('series');
     }
 });
+
 // Serie view
 Router.route('/serie/:_id', {
     name: 'serie',
+    data: function () {
+        let result = series.findOne(new Mongo.ObjectID(this.params._id));
+        console.log(result);
+        return result;
+    },
     waitOn: function () {
-        return Meteor.subscribe('series.getOne', this.params._id);
-    }
+        return Meteor.subscribe('seriesOne', this.params._id);
+    },
 });
 
 // Visionnage
