@@ -12,8 +12,7 @@
                             {{/if}}
                         </ul>
                     {{/if}}
-                    <a href="/" class="brand-logo center"><img src="img/logo.png"
-                                                               style="height: 50px; margin-top: 7px"/></a>
+                    <a href="/" class="brand-logo center"><img src="/img/logo.png" style="height: 50px; margin-top: 7px"/></a>
                     {{#if currentUser}}
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <li><a href="#notifications"><i class="material-icons">add_alert</i></a></li>
@@ -36,8 +35,11 @@
 
         <div id="notifications" class="modal grey darken-4">
             <div class="modal-content">
-                <h4 class="white-text">Invitations à regarder <a class="btn btn-flat green-text right waves-effect text-lighten-2"><i class="material-icons right">mail_outline</i> Inviter quelqu'un</a></h4>
-                <p class="grey-text text-lighten-2">Vos demandes d'invitations à regarder un film ou une série s'affichent ici.</p>
+                <h4 class="white-text">Invitations à regarder
+                    <a class="btn btn-flat green-text right waves-effect text-lighten-2"><i class="material-icons right">mail_outline</i>
+                        Inviter quelqu'un</a></h4>
+                <p class="grey-text text-lighten-2">Vos demandes d'invitations à regarder un film ou une série
+                    s'affichent ici.</p>
                 {{#each invitations}}
                     <div class="card horizontal">
                         <div class="card-image">

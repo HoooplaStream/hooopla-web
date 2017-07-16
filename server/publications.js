@@ -1,17 +1,14 @@
 // User
 
 Meteor.publish("userStatus", function () {
-    Meteor._sleepForMs(500);
     return Meteor.users.find({"status.online": true});
 });
 
 Meteor.publish('users', function () {
-    Meteor._sleepForMs(500);
     return Meteor.users.find();
 });
 
 Meteor.publish('usersActivated', function () {
-    Meteor._sleepForMs(500);
     return Meteor.users.find({'activated': true});
 });
 
@@ -71,6 +68,10 @@ Meteor.publish('favorites', function () {
 
 Meteor.publish('favorites.user', function (id) {
     return favorites.find({user_id: id});
+});
+
+Meteor.publish('favorites.has', function (id, user) {
+    return favorites.find({serie_id: id, user_id: user});
 });
 
 // Invitations

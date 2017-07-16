@@ -1,8 +1,13 @@
 body {
     font-family: "Product Sans", sans-serif;
+    overflow-x: hidden;
 }
 
 #iron-router-progress {
     background-color : #fff;
     box-shadow       : 0 0 5px #fff;
+}
+
+.btn:hover, .btn-large:hover {
+    background-color: rgba(43, 187, 173, 0);
 }

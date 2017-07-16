@@ -1,23 +1,56 @@
 <template name="serie">
-    <div class="row animated fadeInRight"
-         style="min-height: 300px; width: 100vw; background: url('https://image.tmdb.org/t/p/w1920/{{ background }}'); background-size: cover; background-color: rgba(0, 0, 0, 0.7); background-blend-mode: darken">
+    <div class="row animated fadeIn" style="min-height: 95vh; width: 100vw; background: url('https://image.tmdb.org/t/p/w1920/{{ background }}'); background-attachment: fixed; background-size: cover; background-color: rgba(0, 0, 0, 0.7); background-blend-mode: darken">
         <div class="container">
             <div class="row">
                 <div class="col l2 s4">
-                    <img src="https://image.tmdb.org/t/p/w185/{{ cover }}" class="z-depth-5 animated bounceIn"
-                         style="height: 200px; margin-top: 50px; animation-delay: 0.8s;">
+                    <img src="https://image.tmdb.org/t/p/w185/{{ cover }}" class="z-depth-5 animated bounceIn" style="height: 200px; margin-top: 50px; animation-delay: 0.2s;">
                 </div>
                 <div class="col l10 s8">
-                    <h3 class="white-text animated fadeInRight"
-                        style="margin-top: 60px; animation-delay: 0.9s;">{{ name }} <a class="btn btn-flat waves-effect red-text">Ajouter à ma liste</a></h3>
-                    <p class="grey-text animated fadeIn"
-                       style="animation-delay: 1.4s; font-size: 12px">{{ description }}</p>
-                    <span class="card-title center animated fadeInRight" style="animation-delay: 1.4s;" data-id="{{ formatId _id }}">
+                    <h3 class="white-text animated fadeInRight" style="margin-top: 60px;">{{ name }}
+                        {{#if isNotZero favorite }}
+                            <a class="btn btn-flat waves-effect red-text" id="removeFromFavorite">Retirer de ma
+                                liste</a>
+                        {{else}}
+                            <a class="btn btn-flat waves-effect green-text" id="addToFavorite">Ajouter à ma liste</a>
+                        {{/if}}
+                    </h3>
+                    <p class="grey-text animated fadeIn" style="animation-delay: 0.3s; font-size: 12px">{{ description }}</p>
+                    <span class="card-title center animated fadeInRight" style="animation-delay: 0.3s;" data-id="{{ formatId _id }}">
                             {{ starNote rating }} <strong
                             style="font-size: 12px; padding-top: -5px; color: #fff">{{ voters }}</strong> <i
                             class="material-icons white-text" style="font-size: 12px">equalizer</i>
-                        </span>
+                    </span>
                 </div>
+            </div>
+            <div class="row" style="margin-top: 30px">
+                {{#each saison in saisons}}
+                    <div class="animated fadeInUp" style="animation-delay: {{ math.mul @index 0.1 }}s; margin-top: 40px">
+                        <h3 class="white-text" style="width: 100%">Saison {{saison.number}}</h3>
+                        <div class="carousel">
+                            <a class="carousel-item" href="#one!">
+                                <div class="card waves-effect z-depth-5 col l3 s12"  style="width: 100%; border-radius: 7px;">
+                                    <div class="card-content">
+                                        <div class="row" style="margin-bottom: 0">
+                                            <div class="col">
+                                                <span class="card-title activator grey-text text-darken-3">Episode 01</span>
+                                                <i class="material-icons center grey-text" style="font-size: 72px; width: 100%">play_circle_outline</i>
+                                                <h6 style="margin-left: 50%; color: #ff3c38">53:35</h6>
+                                                <div class="progress" style="background-color: transparent">
+                                                    <div class="determinate" style="width: 60%; background: #ff3c38"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {{/each}}
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('.carousel').carousel({fullWidth: true, padding: 30, dist: 0, noWrap: false});
+                    });
+                </script>
             </div>
         </div>
     </div>

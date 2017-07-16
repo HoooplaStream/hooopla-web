@@ -32,3 +32,7 @@ Template.registerHelper('formatId', function(data) {
 Template.registerHelper('isEmpty', function(array) {
     return array.count() !== 0;
 });
+
+Template.registerHelper('isNotZero', function(data) {
+    return data == 0;
+});

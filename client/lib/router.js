@@ -23,10 +23,11 @@ Router.route('/serie/:_id', {
     name: 'serie',
     data: function () {
         let result = series.findOne(new Mongo.ObjectID(this.params._id));
+        let favorite = favorites.find({serie_id: this.params._id, user_id: Meteor.userId()}).fetch();
         return result;
     },
     waitOn: function () {
-        return Meteor.subscribe('seriesOne', this.params._id);
+        return [Meteor.subscribe('seriesOne', this.params._id), Meteor.subscribe('favorites.has', this.params._id, Meteor.userId())];
     },
 });
 
@@ -61,12 +62,12 @@ Router.onBeforeAction(function () {
     if (!Meteor.userId()) {
         this.redirect('/login');
     } else {
-        var permission = Meteor.users.findOne({_id: Meteor.userId()}).profile.permission;
+        /*var permission = Meteor.users.findOne({_id: Meteor.userId()}).profile.permission;
         if (Iron.Location.get().path.includes('admin') && permission < 4) {
             this.redirect('/');
         } else if (Iron.Location.get().path.includes('login') && Meteor.loggingIn()) {
             this.redirect('/');
-        }
+        }*/
     }
     this.next();
 });
