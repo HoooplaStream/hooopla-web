@@ -12,10 +12,11 @@
                             {{/if}}
                         </ul>
                     {{/if}}
-                    <a href="/" class="brand-logo center"><img src="/img/logo.png"
+                    <a href="/" class="brand-logo center"><img src="img/logo.png"
                                                                style="height: 50px; margin-top: 7px"/></a>
                     {{#if currentUser}}
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
+                            <li><a href="#notifications"><i class="material-icons">add_alert</i></a></li>
                             <li><a><img
                                     src="//graph.facebook.com/{{ currentUser.services.facebook.id }}/picture?type=large"
                                     style="height: 32px; border-radius: 100%; margin-top: 15px; margin-right: -20px"></a>
@@ -32,5 +33,39 @@
                 {{> yield}}
             </div>
         </main>
+
+        <div id="notifications" class="modal grey darken-4">
+            <div class="modal-content">
+                <h4 class="white-text">Invitations à regarder <a class="btn btn-flat green-text right waves-effect text-lighten-2"><i class="material-icons right">mail_outline</i> Inviter quelqu'un</a></h4>
+                <p class="grey-text text-lighten-2">Vos demandes d'invitations à regarder un film ou une série s'affichent ici.</p>
+                {{#each invitations}}
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="https://lorempixel.com/150/150/nature/6">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p><b>Clément</b> vous invite à regarder <b>Camping 3</b>.</p>
+                                <p style="font-size: 12px">Envoyé il y a 30 secondes.</p>
+                            </div>
+                            <div class="card-action">
+                                <a class="green-text" href="#">Accepter l'invitation</a>
+                                <a class="red-text" href="#">Refuser l'invitation</a>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="modal-footer grey darken-4">
+                <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Fermer</a>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+                $('.modal').modal();
+            });
+        </script>
+
     </div>
 </template>

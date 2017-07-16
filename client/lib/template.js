@@ -28,3 +28,7 @@ Template.registerHelper('starNote', function (note) {
 Template.registerHelper('formatId', function(data) {
     return (data && data._str) || data;
 });
+
+Template.registerHelper('isEmpty', function(array) {
+    return array.count() !== 0;
+});

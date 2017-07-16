@@ -1,5 +1,24 @@
 <template name="serie">
-    <div class="row" style="height: 300px; width: 100vw; background: url('https://image.tmdb.org/t/p/w185/{{ background }}'); background-size: cover">
-        {{ name }}
+    <div class="row animated fadeInRight"
+         style="min-height: 300px; width: 100vw; background: url('https://image.tmdb.org/t/p/w1920/{{ background }}'); background-size: cover; background-color: rgba(0, 0, 0, 0.7); background-blend-mode: darken">
+        <div class="container">
+            <div class="row">
+                <div class="col l2 s4">
+                    <img src="https://image.tmdb.org/t/p/w185/{{ cover }}" class="z-depth-5 animated bounceIn"
+                         style="height: 200px; margin-top: 50px; animation-delay: 0.8s;">
+                </div>
+                <div class="col l10 s8">
+                    <h3 class="white-text animated fadeInRight"
+                        style="margin-top: 60px; animation-delay: 0.9s;">{{ name }} <a class="btn btn-flat waves-effect red-text">Ajouter à ma liste</a></h3>
+                    <p class="grey-text animated fadeIn"
+                       style="animation-delay: 1.4s; font-size: 12px">{{ description }}</p>
+                    <span class="card-title center animated fadeInRight" style="animation-delay: 1.4s;" data-id="{{ formatId _id }}">
+                            {{ starNote rating }} <strong
+                            style="font-size: 12px; padding-top: -5px; color: #fff">{{ voters }}</strong> <i
+                            class="material-icons white-text" style="font-size: 12px">equalizer</i>
+                        </span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

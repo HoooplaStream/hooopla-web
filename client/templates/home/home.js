@@ -1,7 +1,3 @@
-Template.homeSeries.onCreated(function bodyOnCreated() {
-    Meteor.subscribe('series');
-});
-
 Template.homeSeries.rendered = function () {
 
 };
@@ -9,6 +5,15 @@ Template.homeSeries.rendered = function () {
 Template.homeSeries.helpers({
     'seriesList': function () {
         return series.find();
+    },
+    'favoritesList': function () {
+        var finalList = [];
+
+        favorites.find({user_id: Meteor.userId()}).forEach(function (favorite) {
+            finalList.add(favorite.serie_id)
+        });
+
+        return series.find({id: {$in: finalList}});
     }
 });
 

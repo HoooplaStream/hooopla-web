@@ -63,3 +63,18 @@ Meteor.publish('seriesOne', function (id) {
     return series.find(new Mongo.ObjectID(id));
 });
 
+// Favories (ma liste)
+
+Meteor.publish('favorites', function () {
+    return favorites.find();
+});
+
+Meteor.publish('favorites.user', function (id) {
+    return favorites.find({user_id: id});
+});
+
+// Invitations
+
+Meteor.publish('invitations.get', function () {
+    return watchInvitation.find({target_user: Meteor.userId()})
+});

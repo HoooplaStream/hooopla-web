@@ -18,8 +18,10 @@ Accounts.onCreateUser(function (options, user) {
     return user;
 });
 
+
+
 Meteor.users.deny({
     update: function() {
-        return Meteor.user().profile.permission == 4;
+        return Meteor.user().profile.permission === 4;
     }
 });

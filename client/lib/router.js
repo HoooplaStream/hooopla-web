@@ -1,14 +1,20 @@
 Router.configure({
     loadingTemplate: 'loading',
     layoutTemplate: 'layout',
-    progressSpinner: false
+    progressSpinner: false,
+    waitOn: function () {
+        return Meteor.subscribe('invitations.get');
+    },
+    data: function () {
+        invitations = watchInvitation.find({target_user: Meteor.userId()})
+    }
 });
 
 // Site
 Router.route('/', {
     name: 'homeSeries',
     waitOn: function () {
-        return Meteor.subscribe('series');
+        return [Meteor.subscribe('series'), Meteor.subscribe('favorites.user', Meteor.userId())];
     }
 });
 
@@ -17,7 +23,6 @@ Router.route('/serie/:_id', {
     name: 'serie',
     data: function () {
         let result = series.findOne(new Mongo.ObjectID(this.params._id));
-        console.log(result);
         return result;
     },
     waitOn: function () {
