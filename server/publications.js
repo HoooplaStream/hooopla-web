@@ -79,3 +79,9 @@ Meteor.publish('favorites.has', function (id, user) {
 Meteor.publish('invitations.get', function () {
     return watchInvitation.find({target_user: Meteor.userId()})
 });
+
+// Conversions
+
+Meteor.publish('conversions.get', function () {
+    return conversions.find()
+});

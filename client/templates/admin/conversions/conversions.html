@@ -1,0 +1,35 @@
+<template name="adminConversions">
+    <div class="container">
+        <div class="row animated fadeInUp">
+            <div style="margin-top: 50px">
+                <h4 class="white-text">Conversions en cours</h4>
+                <div class="row">
+                    <ul class="collapsible" data-collapsible="accordion">
+                        {{#each queue in conversions}}
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{queue.id}}</div>
+                                <div class="collapsible-body white">
+                                    {{#each video in queue.videos}}
+                                        <li class="collection-item">
+                                            <div>
+                                                <p class="truncate"><b>{{video.id}}</b><br> {{video.path}}</p>
+                                                <div class="progress red lighten-5">
+                                                    <div class="determinate" style="width: {{video.percent}}%; background: #ff3635"></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {{/each}}
+                                </div>
+                            </li>
+                        {{/each}}
+                    </ul>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('.collapsible').collapsible();
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

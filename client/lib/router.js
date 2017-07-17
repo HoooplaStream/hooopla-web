@@ -54,7 +54,12 @@ Router.route('/admin/users', {
         return Meteor.subscribe('users');
     }
 });
-Router.route('/admin/torrents', {name: 'adminTorrents'});
+Router.route('/admin/conversions', {
+    name: 'adminConversions',
+    waitOn: function () {
+        return Meteor.subscribe('conversions.get');
+    }
+});
 Router.route('/admin/series', {name: 'adminSeries'});
 
 // Permission
