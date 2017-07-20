@@ -1,4 +1,4 @@
-meteor add sessionTemplate.serie.events({
+Template.serie.events({
     'click #removeFromFavorite': function () {
         Meteor.call('removeFavorite', Session.get('currentSerie'), function(error) {
             if (error) Materialize.toast(error.message);

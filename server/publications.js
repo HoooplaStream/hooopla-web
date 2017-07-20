@@ -76,10 +76,11 @@ Meteor.publish('favorites.has', function (id, user) {
 
 Meteor.methods({
     insertFavorite: function (serie_id) {
-        if(Meteor.user().favorites.indexOf(serie_id)) throw new Meteor.Error('serie_already' ,'Cette série est déjà dans la liste!');
+        if(Meteor.user().favorites.indexOf(serie_id)) throw new Meteor.Error('serie_already' ,'Cette série est déjà dans ta liste!');
         return Meteor.users.update({_id: Meteor.userId()}, {$push: {'favorites': serie_id}});
     },
     removeFavorite: function (serie_id) {
+        if(Meteor.user().favorites.indexOf(serie_id)) throw new Meteor.Error('serie_not' ,'Cette série n\'est pas dans ta liste!');
         return Meteor.users.update({_id: Meteor.userId()}, {$pull: {'favorites': serie_id}});
     }
 });

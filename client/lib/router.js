@@ -22,8 +22,12 @@ Router.route('/', {
 Router.route('/serie/:_id', {
     name: 'serie',
     data: function () {
+        Session.set('currentSerie', this.params._id);
         let result = series.findOne(new Mongo.ObjectID(this.params._id));
-        let favorite = favorites.findOne({serie_id: this.params._id, user_id: Meteor.userId()});
+
+        var favoritesDB = Meteor.users.findOne({_id: Meteor.userId()});
+        console.log(favoritesDB);
+        let favorite = $.inArray(this.params._id, favoritesDB.favorites);
         return result;
     },
     waitOn: function () {

@@ -32,8 +32,3 @@ Template.registerHelper('formatId', function(data) {
 Template.registerHelper('isEmpty', function(array) {
     return array.count() !== 0;
 });
-
-Template.registerHelper('hasFavorite', function(data) {
-    console.log(Meteor.user().favorites);
-    return false;
-});
