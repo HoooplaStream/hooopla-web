@@ -7,7 +7,7 @@
                 </div>
                 <div class="col l10 s8">
                     <h3 class="white-text animated fadeInRight" style="margin-top: 60px;">{{ name }}
-                        {{#if isNotZero favorite }}
+                        {{#if hasFavorite _id }}
                             <a class="btn btn-flat waves-effect red-text" id="removeFromFavorite">Retirer de ma
                                 liste</a>
                         {{else}}

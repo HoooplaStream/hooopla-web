@@ -13,20 +13,20 @@ Meteor.publish('usersActivated', function () {
 });
 
 Meteor.methods({
-    'checkUserExist': function(id) {
+    'checkUserExist': function (id) {
         var userCount = Meteor.users.find({facebook_id: id}).count();
         return userCount != 0;
     },
-    'countUser': function() {
+    'countUser': function () {
         return Meteor.users.count();
     },
-    'user.activate': function(id) {
-        if(!Meteor.userId()) throw new Meteor.Error('not-logged', 'Vous n\'êtes pas connecté !');
+    'user.activate': function (id) {
+        if (!Meteor.userId()) throw new Meteor.Error('not-logged', 'Vous n\'êtes pas connecté !');
 
-        var permission = Meteor.users.findOne({_id:Meteor.userId()}).profile.permission;
-        if(permission < 4) throw new Meteor.Error('not-logged', 'Vous n\'avez pas les permissions !');
+        var permission = Meteor.users.findOne({_id: Meteor.userId()}).profile.permission;
+        if (permission < 4) throw new Meteor.Error('not-logged', 'Vous n\'avez pas les permissions !');
 
-        Meteor.users.update(id, { $set: { 'profile.enabled': true } }, function(error, affectedDocs) {
+        Meteor.users.update(id, {$set: {'profile.enabled': true}}, function (error, affectedDocs) {
             if (error) {
                 throw new Meteor.Error('not-logged', error.message);
             } else {
@@ -34,13 +34,13 @@ Meteor.methods({
             }
         });
     },
-    'user.desactivate': function(id) {
-        if(!Meteor.userId()) throw new Meteor.Error('not-logged', 'Vous n\'êtes pas connecté !');
+    'user.desactivate': function (id) {
+        if (!Meteor.userId()) throw new Meteor.Error('not-logged', 'Vous n\'êtes pas connecté !');
 
-        var permission = Meteor.users.findOne({_id:Meteor.userId()}).profile.permission;
-        if(permission < 4) throw new Meteor.Error('not-logged', 'Vous n\'avez pas les permissions !');
+        var permission = Meteor.users.findOne({_id: Meteor.userId()}).profile.permission;
+        if (permission < 4) throw new Meteor.Error('not-logged', 'Vous n\'avez pas les permissions !');
 
-        Meteor.users.update(id, { $set: { 'profile.enabled': false } }, function(error, affectedDocs) {
+        Meteor.users.update(id, {$set: {'profile.enabled': false}}, function (error, affectedDocs) {
             if (error) {
                 throw new Meteor.Error('not-logged', error.message);
             } else {
@@ -71,7 +71,17 @@ Meteor.publish('favorites.user', function (id) {
 });
 
 Meteor.publish('favorites.has', function (id, user) {
-    return favorites.find({serie_id: id, user_id: user});
+    return favorites.findOne({serie_id: id, user_id: user});
+});
+
+Meteor.methods({
+    insertFavorite: function (serie_id) {
+        if(Meteor.user().favorites.indexOf(serie_id)) throw new Meteor.Error('serie_already' ,'Cette série est déjà dans la liste!');
+        return Meteor.users.update({_id: Meteor.userId()}, {$push: {'favorites': serie_id}});
+    },
+    removeFavorite: function (serie_id) {
+        return Meteor.users.update({_id: Meteor.userId()}, {$pull: {'favorites': serie_id}});
+    }
 });
 
 // Invitations

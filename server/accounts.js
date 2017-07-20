@@ -12,8 +12,8 @@ Accounts.onCreateUser(function (options, user) {
     user.id = user.services.facebook.id;
     user.username = user.services.facebook.name;
     user.email = user.services.facebook.email;
-    /*user.profile.enabled = false;
-    user.profile.permission = 0;*/
+    user.enabled = false;
+    user.permission = 0;
 
     return user;
 });

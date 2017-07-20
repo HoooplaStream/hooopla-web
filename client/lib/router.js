@@ -14,7 +14,7 @@ Router.configure({
 Router.route('/', {
     name: 'homeSeries',
     waitOn: function () {
-        return [Meteor.subscribe('series'), Meteor.subscribe('favorites.user', Meteor.userId())];
+        return [Meteor.subscribe('series')];
     }
 });
 
@@ -23,11 +23,11 @@ Router.route('/serie/:_id', {
     name: 'serie',
     data: function () {
         let result = series.findOne(new Mongo.ObjectID(this.params._id));
-        let favorite = favorites.find({serie_id: this.params._id, user_id: Meteor.userId()}).fetch();
+        let favorite = favorites.findOne({serie_id: this.params._id, user_id: Meteor.userId()});
         return result;
     },
     waitOn: function () {
-        return [Meteor.subscribe('seriesOne', this.params._id), Meteor.subscribe('favorites.has', this.params._id, Meteor.userId())];
+        return [Meteor.subscribe('seriesOne', this.params._id)];
     },
 });
 

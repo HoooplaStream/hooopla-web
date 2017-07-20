@@ -9,8 +9,8 @@ Template.homeSeries.helpers({
     'favoritesList': function () {
         var finalList = [];
 
-        favorites.find({user_id: Meteor.userId()}).forEach(function (favorite) {
-            finalList.add(favorite.serie_id)
+        Meteor.user().favorites.forEach(function (favorite) {
+            finalList.add(favorite)
         });
 
         return series.find({id: {$in: finalList}});
@@ -22,6 +22,7 @@ Template.homeSeries.events({
         e.preventDefault();
         let id = e.target.getAttribute("data-id");
         $(e.target).addClass('animated zoomOutLeft');
+        Session.set('currentSerie', id);
         setTimeout(function () {
             Router.go('/serie/' + id);
         }, 700);
