@@ -7,7 +7,7 @@ Template.homeSeries.helpers({
         return series.find();
     },
     'favoritesList': function () {
-        var finalList = [];
+        let finalList = [];
 
         Meteor.user().favorites.forEach(function (favorite) {
             finalList.add(favorite)

@@ -25,7 +25,7 @@ Router.route('/serie/:_id', {
         Session.set('currentSerie', this.params._id);
         let result = series.findOne(new Mongo.ObjectID(this.params._id));
 
-        var favoritesDB = Meteor.users.findOne({_id: Meteor.userId()});
+        let favoritesDB = Meteor.users.findOne({_id: Meteor.userId()});
         console.log(favoritesDB);
         let favorite = $.inArray(this.params._id, favoritesDB.favorites);
         return result;
@@ -42,7 +42,15 @@ Router.route('/users', {
         return Meteor.subscribe('userStatus');
     }
 });
-Router.route('/view/:id', {name: 'view'});
+Router.route('/view/:_id', {
+    name: 'view',
+    waitOn: function () {
+        return Meteor.subscribe('seriesOne', this.params._id)
+    },
+    data: function () {
+        return series.findOne(new Mongo.ObjectID(this.params._id));
+    }
+});
 
 // User
 Router.route('/login', {name: 'login'});
