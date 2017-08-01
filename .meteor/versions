@@ -71,6 +71,7 @@ modules-runtime@0.8.0
 momentjs:moment@2.10.6
 mongo@1.1.17
 mongo-id@1.0.6
+mrt:jquery-ui@1.9.2
 multiply:iron-router-progress@1.0.2
 npm-mongo@2.2.24
 oauth@1.1.13
@@ -88,6 +89,7 @@ retry@1.0.9
 rkstar:tmdb@2.0.2
 routepolicy@1.0.12
 sacha:spin@2.3.1
+sebdah:autocompletion@0.2.0
 service-configuration@1.0.11
 session@1.1.7
 shell-server@0.2.3
