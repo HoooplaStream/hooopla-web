@@ -1,8 +1,43 @@
 <template name="view">
     <div style="width: 100vw" class="black">
-        <video controls style="width: 60vw; margin-left: 20vw">
-            <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4">
-        </video>
+
+        <div class="row">
+            <div class="col l3 s12 hide-on-med-and-down">
+                <div class="card-panel black">
+                    <h2 class="white-text">Vous regardez</h2>
+                    <h4 class="grey-text text-lighten-2" style="line-height: 0">{{ name }}</h4>
+                </div>
+                <div class="card-panel black">
+                    <h5 class="white-text">Ami(s) qui regarde(nt) avec vous</h5>
+
+                    <div class="card horizontal" style="margin: 0.5rem 0 0 0">
+                        <div class="card-image">
+                            <img src="https://unsplash.it/100/100" style="border-radius: 100%; margin-top: 10px; height: 60px; margin-left: 10px">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content" style="padding: 24px 24px 10px 24px;">
+                                <p class="truncate"><b>Clément</b> regarde avec vous.</p><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress" style="background: #d0d0d0; margin: 0 0 1rem 0">
+                        <div class="determinate" style="width: 40%; background: #ff2a31"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col l9 s12">
+                <video id="my-video" class="video-js" controls preload="auto" style="width: 100%" poster="https://unsplash.it/400/1200" data-setup="{}">
+                    <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type='video/mp4'>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                </video>
+            </div>
+        </div>
+
+
         <script type="text/javascript">
             $(document).ready(function () {
                 plyr.setup();

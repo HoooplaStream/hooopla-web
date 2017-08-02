@@ -42,7 +42,7 @@ Router.route('/users', {
         return Meteor.subscribe('userStatus');
     }
 });
-Router.route('/view/:_id', {
+Router.route('/view/:_id/:saison/:episode', {
     name: 'view',
     waitOn: function () {
         return Meteor.subscribe('seriesOne', this.params._id)

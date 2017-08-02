@@ -4,7 +4,7 @@
             <nav class="grey darken-4 z-depth-0">
                 <div class="nav-wrapper">
                     {{#if currentUser}}
-                        {{#if currentUser}}
+                        {{#if isActiveRoute name='homeSeries'}}
                             <ul id="nav-mobile" class="left">
                                 <li class="hide-on-large-only"><a href=""><i class="material-icons">menu</i></a></li>
                                 <li class="hide-on-med-and-down"><a href="/">Séries</a></li>
@@ -15,7 +15,7 @@
                             </ul>
                         {{else}}
                             <ul id="nav-mobile" class="left">
-                                <li class="hide-on-large-only"><a href=""><i class="material-icons">navigate_before</i></a></li>
+                                <li><a style="cursor: pointer" onClick="history.go(-1); return false;"><i class="material-icons">navigate_before</i></a></li>
                             </ul>
                         {{/if}}
                     {{/if}}
@@ -44,11 +44,9 @@
 
         <div id="notifications" class="modal grey darken-4">
             <div class="modal-content">
-                <h4 class="white-text">Invitations à regarder
-                    <a class="btn btn-flat green-text right waves-effect text-lighten-2" href="#inviteSomeone"><i class="material-icons right">mail_outline</i>
-                        Inviter quelqu'un</a></h4>
-                <p class="grey-text text-lighten-2">Vos demandes d'invitations à regarder un film ou une série
-                    s'affichent ici.</p>
+                <h4 class="white-text">Invitations à regarder</h4>
+                <p class="grey-text text-lighten-2">Vos demandes d'invitations à regarder un film ou une série s'affichent ici.</p>
+                <h5><a href="#inviteSomeone" class="btn white green-text text-lighten-2 left"><i class="material-icons right">mail_outline</i>Inviter quelqu'un</a></h5><br>
                 {{#each invitations}}
                     <div class="card horizontal">
                         <div class="card-image">
@@ -68,12 +66,12 @@
                 {{/each}}
             </div>
             <div class="modal-footer grey darken-4">
-                <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Fermer</a>
+                <a href="#!" class="modal-action modal-close text-lighten-1 waves-effect waves-red btn-flat">Fermer</a>
             </div>
         </div>
 
 
-        <div id="inviteSomeone" class="modal grey darken-4 animated bounceIn">
+        <div id="inviteSomeone" class="modal grey darken-4 animated zoomIn">
             <div class="modal-content">
                 <h4 class="white-text">Inviter une personne</h4>
                 <p class="grey-text text-lighten-2">Entrez le prénom et/ou le nom de la personne concerné</p>

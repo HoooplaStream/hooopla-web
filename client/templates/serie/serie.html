@@ -26,20 +26,16 @@
                 {{#each saison in saisons}}
                     <div class="animated fadeInUp" style="animation-delay: {{ math.mul @index 0.1 }}s; margin-top: 40px">
                         <h3 class="white-text" style="width: 100%">Saison {{saison.number}}</h3>
-                        <div class="carousel">
+                        <div class="row">
                             {{#each episode in saisons.episode}}
-                                <a class="carousel-item" href="{{ pathfor 'view' }}/{{ episode.id }}">
-                                    <div class="card waves-effect z-depth-5 col l3 s12" style="width: 100%; border-radius: 7px;">
-                                        <div class="card-content">
-                                            <div class="row" style="margin-bottom: 0">
-                                                <div class="col">
-                                                    <span class="card-title activator grey-text text-darken-3">Episode 01</span>
-                                                    <i class="material-icons center grey-text" style="font-size: 72px; width: 100%">play_circle_outline</i>
-                                                    <h6 style="margin-left: 50%; color: #ff3c38">53:35</h6>
-                                                    <div class="progress" style="background-color: transparent">
-                                                        <div class="determinate" style="width: 60%; background: #ff3c38"></div>
-                                                    </div>
-                                                </div>
+                                <a href="{{ pathfor 'view' }}/{{ episode.id }}">
+                                    <div class="col l2 s3">
+                                        <div class="card-panel grey lighten-5 z-depth-1">
+                                            <span class="card-title activator grey-text text-darken-3">Episode 01</span>
+                                            <i class="material-icons center grey-text" style="font-size: 72px; width: 100%">play_circle_outline</i>
+                                            <h6 style="margin-left: 50%; color: #ff3c38">53:35</h6>
+                                            <div class="progress" style="background-color: transparent">
+                                                <div class="determinate" style="width: 60%; background: #ff3c38"></div>
                                             </div>
                                         </div>
                                     </div>
