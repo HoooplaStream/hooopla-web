@@ -1,8 +1,10 @@
 <template name="view">
     <div style="height: 100vh" class="black">
         <style>
-            body {
-                overflow: hidden;
+            @media only screen and (min-width : 1024px) {
+                body {
+                    overflow: hidden;
+                }
             }
             
             .video-js {
@@ -51,12 +53,13 @@
             }
         </style>
         <div class="row">
-            <div class="col l3 s12 hide-on-med-and-down">
+            <div class="col xl3 l5 m6 s12 hide-on-med-and-down">
                 <div class="card-panel black">
                     <a class="waves-effect transparent z-depth-0 white-text" style="cursor: pointer" onClick="history.go(-1); return false;"><i class="material-icons left">navigate_before</i> Retour</a>
                     <h2 class="white-text">Vous regardez</h2>
                     <h4 class="grey-text text-lighten-2" style="line-height: 0">{{ name }}</h4>
                 </div>
+
                 <div class="card-panel black">
                     <h5 class="white-text">Ami(s) qui regarde(nt) avec vous</h5>
 
@@ -76,7 +79,7 @@
 
                 </div>
             </div>
-            <div class="col l9 s12">
+            <div class="col xl9 l7 m12 s12">
                 <video id="my-video" class="video-js" controls preload="auto" style="width: 100%; height: 100vh;" poster="https://image.tmdb.org/t/p/w1920/{{ background }}" data-setup="{}">
                     <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type='video/mp4'>
                     <p class="vjs-no-js">
