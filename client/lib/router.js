@@ -39,7 +39,7 @@ Router.route('/serie/:_id', {
 Router.route('/users', {
     name: 'usersOnline',
     waitOn: function () {
-        return Meteor.subscribe('userStatus');
+        return [Meteor.subscribe('userStatus')];
     }
 });
 Router.route('/view/:_id/:saison/:episode', {
@@ -47,8 +47,39 @@ Router.route('/view/:_id/:saison/:episode', {
     waitOn: function () {
         return Meteor.subscribe('seriesOne', this.params._id)
     },
-    data: function () {
-        return series.findOne(new Mongo.ObjectID(this.params._id));
+    data: {
+        room: function () {
+            var room = Streamy.rooms(Meteor.userId());
+            console.log(room);
+
+            return room;
+        },
+        serie: function () {
+            return series.findOne({_id: new Mongo.ObjectID(Router.current().params._id)});
+        },
+        episode: function () {
+            var id = Router.current().params._id;
+            var saison = Router.current().params.saison;
+            var episodeParam = Router.current().params.episode;
+
+            var serie = series.findOne(new Mongo.ObjectID(id));
+
+            var work = false;
+            var episode = null;
+            serie.saisons.forEach(function(entry) {
+                if(parseInt(saison) == entry.id){
+                    entry.episodes.forEach(function(episodeDB) {
+                        if(episodeDB.id == parseInt(episodeParam)){
+                            work = true;
+                            episode = episodeDB;
+                            console.log(episode);
+                        }
+                    });
+                }
+            });
+
+            return episode;
+        }
     }
 });
 

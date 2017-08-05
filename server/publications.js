@@ -60,6 +60,12 @@ Meteor.publish('seriesOne', function (id) {
     return series.find(new Mongo.ObjectID(id));
 });
 
+// Rooms
+
+Meteor.publish('rooms', function () {
+    return rooms.find();
+});
+
 // Favories (ma liste)
 
 Meteor.publish('favorites', function () {

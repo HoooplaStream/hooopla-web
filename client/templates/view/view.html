@@ -1,16 +1,17 @@
 <template name="view">
     <div style="height: 100vh" class="black">
         <style>
-            @media only screen and (min-width : 1024px) {
+            @media only screen and (min-width: 1024px) {
                 body {
                     overflow: hidden;
                 }
             }
-            
+
             .video-js {
                 font-size: 10px;
                 color: #fff;
             }
+
             .vjs-default-skin .vjs-big-play-button {
                 font-size: 3em;
                 line-height: 1.5em;
@@ -53,23 +54,28 @@
             }
         </style>
         <div class="row">
-            <div class="col xl3 l5 m6 s12 hide-on-med-and-down">
+            <div class="col xl3 l5 m6 s12 hide-on-med-and-down animated fadeInLeft">
                 <div class="card-panel black">
-                    <a class="waves-effect transparent z-depth-0 white-text" style="cursor: pointer" onClick="history.go(-1); return false;"><i class="material-icons left">navigate_before</i> Retour</a>
+                    <a class="waves-effect transparent z-depth-0 white-text" style="cursor: pointer" onClick="history.go(-1); return false;"><i class="material-icons left">navigate_before</i>
+                        Retour</a>
                     <h2 class="white-text">Vous regardez</h2>
-                    <h4 class="grey-text text-lighten-2" style="line-height: 0">{{ name }}</h4>
+                    <h4 class="grey-text text-lighten-2" style="line-height: 0">{{ serie.name }}</h4>
+                    <h6 class="red-text text-accent-2 truncate" style="margin-top: 20px">Episode {{ episode.id }} - {{ episode.name }}</h6>
                 </div>
 
                 <div class="card-panel black">
                     <h5 class="white-text">Ami(s) qui regarde(nt) avec vous</h5>
 
+                    {{#each user in room.session_ids}}
+
+                    {{/each}}
                     <div class="card horizontal" style="margin: 0.5rem 0 0 0">
                         <div class="card-image">
                             <img src="http://via.placeholder.com/100x100" style="border-radius: 100%; margin-top: 10px; height: 60px; margin-left: 10px">
                         </div>
                         <div class="card-stacked">
                             <div class="card-content" style="padding: 24px 24px 10px 24px;">
-                                <p class="truncate"><b>Clément</b> regarde avec vous.</p><br>
+                                <p class="truncate"><b>Guillaume</b> regarde avec vous.</p><br>
                             </div>
                         </div>
                     </div>
@@ -80,46 +86,16 @@
                 </div>
             </div>
             <div class="col xl9 l7 m12 s12">
-                <video id="my-video" class="video-js" controls preload="auto" style="width: 100%; height: 100vh;" poster="https://image.tmdb.org/t/p/w1920/{{ background }}" data-setup="{}">
-                    <source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type='video/mp4'>
+                <video id="my-video" class="video-js animated zoomIn" controls autoplay preload="auto" style="width: 100%; height: 100vh;" poster="https://image.tmdb.org/t/p/w1920/{{ background }}" data-setup="{}">
+                    <source src="{{ episode.url }}" type='video/mp4'>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a web browser that
                         <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                     </p>
                 </video>
             </div>
-            <div class="col l3 s12 hide-on-large-only">
-                <div class="card-panel black">
-                    <img src="/img/logo.png" class="center" style="height: 50px;"/>
-                    <h2 class="white-text">Vous regardez</h2>
-                    <h4 class="grey-text text-lighten-2" style="line-height: 0">{{ name }}</h4>
-                </div>
-                <div class="card-panel black">
-                    <h5 class="white-text">Ami(s) qui regarde(nt) avec vous</h5>
-
-                    <div class="card horizontal" style="margin: 0.5rem 0 0 0">
-                        <div class="card-image">
-                            <img src="http://via.placeholder.com/100x100" style="border-radius: 100%; margin-top: 10px; height: 60px; margin-left: 10px">
-                        </div>
-                        <div class="card-stacked">
-                            <div class="card-content" style="padding: 24px 24px 10px 24px;">
-                                <p class="truncate"><b>Clément</b> regarde avec vous.</p><br>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress" style="background: #d0d0d0; margin: 0 0 1rem 0">
-                        <div class="determinate" style="width: 40%; background: #ff2a31"></div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <script src="https://vjs.zencdn.net/6.2.4/video.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function () {
-                plyr.setup();
-            });
-        </script>
     </div>
 </template>
