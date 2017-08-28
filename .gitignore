@@ -2,3 +2,4 @@ node_modules/
 settings.json
 /server/main.js
 start.sh
+.idea

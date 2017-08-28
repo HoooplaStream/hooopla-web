@@ -11,3 +11,7 @@ body {
 .btn:hover, .btn-large:hover {
     background-color: rgba(43, 187, 173, 0);
 }
+
+.grey, .darken-4 {
+    background-color: #15152b !important;
+}
